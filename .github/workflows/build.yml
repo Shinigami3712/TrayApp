@@ -1,0 +1,55 @@
+
+name: Build TrayApp
+
+on:
+  push:
+    branches:
+      - main
+      - feature/system-tray
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up MSBuild
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Verify Visual C++ toolset
+        shell: pwsh
+        run: |
+          $vswhere = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"
+          $vs = & $vswhere -latest -products '*' -property installationPath
+          if (-not $vs) {
+            throw "Visual Studio installation was not found."
+          }
+          $toolset = Join-Path $vs "VC\Tools\MSVC"
+          $found = Get-ChildItem $toolset -Directory -ErrorAction SilentlyContinue |
+            Where-Object { $_.Name -like "14.5*" }
+          if (-not $found) {
+            throw "MSVC v145 toolset was not found on this runner."
+          }
+
+      - name: Build TrayApp
+        run: >
+          msbuild TrayApp/TrayApp.vcxproj
+          /m
+          /p:Configuration=Release
+          /p:Platform=x64
+          /p:RestorePackages=false
+          /verbosity:minimal
+
+      - name: Upload executable
+        uses: actions/upload-artifact@v4
+        with:
+          name: TrayApp-windows-x64
+          path: x64/Release/TrayApp.exe
+          if-no-files-found: error
+          retention-days: 14
