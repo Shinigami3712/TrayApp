@@ -46,10 +46,12 @@ jobs:
           /p:RestorePackages=false
           /verbosity:minimal
 
+      
       - name: Upload executable
         uses: actions/upload-artifact@v4
         with:
           name: TrayApp-windows-x64
-          path: x64/Release/TrayApp.exe
+          path: TrayApp/x64/Release/TrayApp.exe
           if-no-files-found: error
           retention-days: 14
+
