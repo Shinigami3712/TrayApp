@@ -32,6 +32,9 @@
     <ClCompile Include="TrayApp.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="..\SharedRpc\TrayRpc_c.c">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="TrayApp.rc">
@@ -45,5 +48,10 @@
     <Image Include="TrayApp.ico">
       <Filter>Файлы ресурсов</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Midl Include="TrayRpc.idl">
+      <Filter>Исходные файлы</Filter>
+    </Midl>
   </ItemGroup>
 </Project>

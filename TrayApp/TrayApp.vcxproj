@@ -81,10 +81,14 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>Rpcrt4.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Manifest>
       <EnableSegmentHeap>true</EnableSegmentHeap>
     </Manifest>
+    <Midl>
+      <OutputDirectory>$(SolutionDir)SharedRpc</OutputDirectory>
+    </Midl>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -99,10 +103,14 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>Rpcrt4.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Manifest>
       <EnableSegmentHeap>true</EnableSegmentHeap>
     </Manifest>
+    <Midl>
+      <OutputDirectory>$(SolutionDir)SharedRpc</OutputDirectory>
+    </Midl>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -115,10 +123,14 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>Rpcrt4.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Manifest>
       <EnableSegmentHeap>true</EnableSegmentHeap>
     </Manifest>
+    <Midl>
+      <OutputDirectory>$(SolutionDir)SharedRpc</OutputDirectory>
+    </Midl>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -133,10 +145,14 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>Rpcrt4.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Manifest>
       <EnableSegmentHeap>true</EnableSegmentHeap>
     </Manifest>
+    <Midl>
+      <OutputDirectory>$(SolutionDir)SharedRpc</OutputDirectory>
+    </Midl>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="framework.h" />
@@ -145,6 +161,7 @@
     <ClInclude Include="TrayApp.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\SharedRpc\TrayRpc_c.c" />
     <ClCompile Include="TrayApp.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -153,6 +170,30 @@
   <ItemGroup>
     <Image Include="small.ico" />
     <Image Include="TrayApp.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Midl Include="TrayRpc.idl">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+      <GenerateClientFiles Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </GenerateClientFiles>
+      <GenerateServerFiles Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </GenerateServerFiles>
+      <GenerateClientFiles Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </GenerateClientFiles>
+      <GenerateServerFiles Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </GenerateServerFiles>
+      <GenerateClientFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </GenerateClientFiles>
+      <GenerateServerFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </GenerateServerFiles>
+      <GenerateClientFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </GenerateClientFiles>
+      <GenerateServerFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </GenerateServerFiles>
+    </Midl>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
