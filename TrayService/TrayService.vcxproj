@@ -148,7 +148,7 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="C:\ZIiPO\TrayApp\SharedRpc\TrayRpc_s.c" />
+    <ClCompile Include="..\SharedRpc\TrayRpc_s.c" />
     <ClCompile Include="TrayService.cpp" />
   </ItemGroup>
   <ItemGroup>
